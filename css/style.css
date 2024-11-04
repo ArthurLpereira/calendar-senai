@@ -1,0 +1,407 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body,
+html {
+    height: 100vh;
+    width: 100vw;
+    background-color: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.navegacao{
+    display: flex;
+    gap: 30px;
+}
+#anterior,#proximo{
+    background-color: transparent;
+}
+i{
+    font-size: 2rem;
+}
+#atual {
+    font-size: 30px;
+    text-transform: uppercase;
+}
+#anterior,
+#proximo {
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.calendario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.semana,
+#dias {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.semana div {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 15.2px;
+    margin-left: 3.5px;
+    transition: 0.5s ease;
+}
+
+#dias div {
+    background-color: #f1f5f9;
+    text-align: center;
+    padding: 13px;
+    transition: 0.5s;
+    border: 3px double black;
+    margin: 0 0 3px 3px;
+}
+
+.semana div,
+#dias div {
+    width: 40px;
+}
+
+#dias div.fim_semana {
+    background-color: #D9D9D9;
+}
+
+#dias div.outro_mes {
+    opacity: 60%;
+    color: rgb(90, 90, 90);
+}
+
+#dias div:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: #dadada;
+}
+
+#dias div.fim_semana:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: #ababab;
+}
+
+.dia.selecionado {
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: #d0cfcf !important;
+}
+
+.dia.fim_semana.selecionado {
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: #ababab !important;
+}
+
+.vazio {
+    opacity: 100%;
+    transition: 0.5s ease;
+}
+
+#dias {
+    transition: opacity 0.4s ease;
+}
+
+#data {
+    margin-top: 20px;
+    font-size: 20px;
+}
+nav{
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 250px;
+    margin-left: 20px;
+    display: flex;
+}
+nav ul li:hover{
+    text-decoration: underline;
+    color: white;
+}
+.menu{
+    position: fixed;
+    top: 0;
+    left: -350px;
+    width: 350px;
+    height: 100%;
+    background-color: #000;
+    transition: left 0.5s ease;
+}
+
+.menu.ativo{
+    left: 0;
+}
+
+.menu ul li{
+    color: white;
+    text-transform: uppercase;
+    list-style: none;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.hamburguer,.barra{
+    position: fixed;
+}
+.hamburguer{
+    display: block;
+    border: none;
+    /* background-color: black; */
+    cursor: pointer;
+}
+.hamburguer.aberto #barra1{
+    background-color: white;
+    transform: rotate(45deg) translate(6px, 8px);
+}
+.hamburguer.aberto #barra2{
+    background-color: transparent;
+}
+.hamburguer.aberto #barra3{
+    background-color: white;
+    transform: rotate(-45deg) translate(6px, -8px);
+}
+.barra{
+    top: 30px;
+    left: 30px;
+    background-color: black;
+    width: 35px;
+    height: 5px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+#barra2{
+    top: 40px;
+}
+#barra3{
+    top: 50px;
+}
+#TrocarTema,#Semanal,#Mensal{
+    height: 5vh;
+    width: 7vw;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+body.modo-escuro {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+body.modo-escuro .menu {
+    background-color: #333;
+}
+body.modo-escuro .barra {
+    background-color: white;
+}
+body.modo-escuro .semana div {
+    background-color: #444;
+}
+
+body.modo-escuro #dias div {
+    background-color: #555;
+    border-color: #777;
+}
+
+body.modo-escuro #dias div.fim_semana {
+    background-color: #666;
+}
+
+body.modo-escuro #dias div.outro_mes {
+    color: #aaa;
+}
+
+body.modo-escuro #dias div:hover {
+    background-color: #666;
+}
+
+body.modo-escuro .dia.selecionado {
+    background-color: #777 !important;
+}
+
+body.modo-escuro nav ul li:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+body.modo-escuro i{
+    color: white;
+}
+
+dialog#modal {
+    width: 300px;
+    height: 250px;
+    border-radius: 8px;
+    border: none;
+    padding: 20px;
+    background-color: #f5f5f5;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: Arial, sans-serif;
+    position: absolute;
+    top: calc(50% - 125px);
+    left: calc(50% - 150px);
+}
+
+
+#titulo-dialog {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+
+#fechar-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+#fechar-modal:hover {
+    color: #ff6666;
+}
+
+.input-form {
+    margin-bottom: 15px;
+    margin-right: 15px;
+}
+
+.input-form label {
+    font-weight: bold;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-form input[type="text"],
+.input-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    resize: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#salvar-form {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#salvar-form:hover {
+    background-color: #45a049;
+}
+
+/* Estilo padrão (desktop) */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  header, .calendar, .event-modal {
+    margin-bottom: 20px;
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+  }
+  
+  .calendar-day {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  header, .calendar, .event-modal {
+    margin-bottom: 20px;
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+  }
+  
+  .calendar-day {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    transition: background-color 0.3s;
+  }
+  
+  .calendar-day:hover {
+    background-color: #f0f0f0;
+  }
+  
+  @media (max-width: 768px){
+    .navegacao{
+        width: 250px;
+    }
+    .navegacao ul li {
+        font-size: 1.2em; 
+        padding: 10px 15px;
+    }
+    .hamburguer {
+        top: 3%;
+        left: 90%;
+        width: 25px; 
+        height: 25px;
+    }
+}
+@media (max-width: 480px){
+    .navegacao{
+        width: 180px;
+    }
+    .navegacao ul li {
+        font-size: 0.8em; 
+        padding: 14px 0px;
+        width: 135px;
+    }
+    .hamburguer {
+        top: 3%;
+        left: 85%;
+        width: 20px; 
+        height: 20px;
+    }
+}
+  
